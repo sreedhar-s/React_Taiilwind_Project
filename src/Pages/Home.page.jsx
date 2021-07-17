@@ -1,3 +1,4 @@
+  
 import React from "react";
 
 //Components
@@ -21,7 +22,7 @@ const HomePage = () => {
           </div>
           <div className="bg-bms-800 py-12">
             <div className="container mx-auto px-4">
-              <img className="w-full h-full pb-16" src="https://in.bmscdn.com/discovery-catalog/collections/tr:w-1440,h-120/premiere-rupay-banner-web-collection-202104230555.png" alt="premier image"/>
+              <img src="https://in.bmscdn.com/discovery-catalog/collections/tr:w-1440,h-120/premiere-rupay-banner-web-collection-202104230555.png" alt="premier" className="w-full h-full pb-16" />
               <PosterSlider images={TempPosters} title="Premiers" subtitle="Brand new releas Every Friday" isDark/>
             </div>
           </div>
@@ -44,4 +45,3 @@ const HomePage = () => {
 };
 
 export default HomePage;
-

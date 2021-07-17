@@ -1,30 +1,20 @@
 import React from "react";
-import { BiChevronRight,BiSearch,BiMenu,BiChevronDown, } from "react-icons/bi/";
+import {BiSearch,BiMenu,BiChevronDown,BiShareAlt} from "react-icons/bi/";
 const NavSm = () => {
     return ( 
     <>
-      <nav className="text-white flex items-center justify-between">
+      <div className="text-white flex items-center justify-between">
           <div>
               <h3 className="text-2xl font-bold">It All starts Here!</h3>
-              <span className="text-gray-400 text-xs flex items-center">Guntakal <BiChevronRight /></span>
           </div>
           <div className="w-8 h-8">
-            <BiSearch className="w-full h-full"/>
+            <BiShareAlt className="w-full h-full"/>
           </div>
-      </nav>
+      </div>
     </>
     );  
 };
-const NavMd = () => {
-  return (
-    <>
-      <div className="w-full flex items-center gap-3 bg-white py-2 px-3 rounded">
-        <BiSearch />
-        <input type="search" className="w-full bg-transparant border-none focus:outline-none" placeholder="Search for Movies,Events,plays,Sports and Activities"/>
-      </div> 
-    </>
-  );
-};
+
 const NavLg = () => {
   return (
     <>
@@ -51,22 +41,25 @@ const NavLg = () => {
   );
 };
 
-const Navbar = () => {
-    return (
-        <>
-          <nav className="bg-bms-700 px-3 py-3">
-            <div className="md:hidden">{/* Mobile Screen */}
-              <NavSm />
-            </div>
-            <div className="hidden md:flex lg:hidden">{/* Tablet Screen */}
-              <NavMd /> 
-            </div>
-            <div className="hidden md-hidden lg:flex">{/* Large Screen */}
-              <NavLg />
-            </div>  
-          </nav> 
-        </>
-    );
+const MovieNavbar = () => {
+  return (
+    <>
+      <nav className="absolute inset-x-0 z-30 bg-opacity-10 backdrop-filter backdrop-blur-lg lg:relative lg:bg-bms-700 p-4">
+        <div className="md:hidden">
+          {/* Mobile screen */}
+          <NavSm />
+        </div>
+        <div className="hidden md:block lg:hidden">
+          {/* Medium/Tab screen */}
+          <NavSm />
+        </div>
+        <div className="hidden w-full lg:flex">
+          {/* Large screen */}
+          <NavLg />
+        </div>
+      </nav>
+    </>
+  );
 };
 
-export default Navbar;
+export default MovieNavbar;
