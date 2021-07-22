@@ -9,7 +9,7 @@ const Plays = () => {
       <div className="w-auto h-auto bg-bms-100 mt-7">
         <div className="container mx-auto px-4">
           <div className="w-full lg:flex lg:flex-row-reverse gap-8">
-            <div className="lg:w-8/12">
+            <div className="lg:w-8/12 mt-8">
               <h2 className="text-gray-800 font-bold text-2xl mb-5">
                 Plays in Guntakal
               </h2>
@@ -44,9 +44,9 @@ const Plays = () => {
                 </div>
               </div>
             </div>
-            <div className="lg:w-3/12">
+            <div className="lg:w-3/12 mt-8">
               <h2 className="text-gray-800 font-bold text-2xl mb-5">
-                Plays in Guntakal
+                Filters
               </h2>
               <div>
                   <PlaysFilter title="Date" tags={["Today","Tomorrow","This Weekend"]} />

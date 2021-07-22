@@ -1,70 +1,76 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import HeroSlider from "react-slick";
+import axios from "axios";
 
 //Import arrow component
-import { NextArrow,PrevArrow } from "./Arrows.component";
+import { NextArrow, PrevArrow } from "./Arrows.component";
 
 const HeroCarousal = () => {
+  const [images, setImages] = useState([]);
 
-       const settingsLG = {
-          dots:true,
-          arrows: true,
-          autoplay: true,
-          centerMode: true,
-          centerPadding: "300px",
-          slidesToShow: 1,
-          infinite: true,
-          slidesToScroll: 1,
-          nextArrow:<NextArrow />,
-          prevArrow:<PrevArrow />,
-        };
-        const settings = {
-            arrows:true,
-            dots: true,
-            infinite: true,
-            speed: 500,
-            slidesToShow: 1,
-            slidesToScroll: 1,
-            nextArrow:< NextArrow />,
-            prevArrow:< PrevArrow />,
-        };
+  useEffect(() => {
+    const requestNowPlayingMovies = async () => {
+      const getImages = await axios.get("/movie/now_playing");
+      setImages(getImages.data.results);
+    };
 
-        const images = [
-            "https://in.bmscdn.com/promotions/cms/creatives/1626197447125_nomis_1280x500webbanner_14julios.jpg",
-            "https://in.bmscdn.com/promotions/cms/creatives/1625077257492_dearishqafestivalofkisseykahaniyaanpoetry_webshowcase_1280x500.jpg",
-            "https://in.bmscdn.com/promotions/cms/creatives/1625685026902_joboltahaiwohihotahaifeatharshgujral_webshowcase_1280x500.jpg",
-            "https://in.bmscdn.com/promotions/cms/creatives/1625559912123_bsm_1280x500_chickflick.jpg",
-            "https://in.bmscdn.com/promotions/cms/creatives/1625720005981_upgradgrouppagebanner_webshowcase_1280x500.jpg",
-        ];
+    requestNowPlayingMovies();
+  }, []);
 
-        
-        return (
-            <>
-              <div className="lg:hidden">
-                <HeroSlider {...settings}>
-                  {images.map((image) => (
-                    <div className="w-full h-56 md:h-80 py-3">
-                      <img src={image} alt="testing" className="w-full h-full" />
-                    </div>
-                  ))}
-                </HeroSlider>
-              </div>
-        
-              <div className="hidden lg:block">
-                <HeroSlider {...settingsLG}>
-                  {images.map((image) => (
-                    <div className="w-full h-72 px-1 py-2 m-3">
-                      <img
-                        src={image}
-                        alt="testing"
-                        className="w-full h-full rounded-md"
-                      />
-                    </div>
-                  ))}
-                </HeroSlider>
-              </div>
-            </>
-        );
+  const settingsLG = {
+    dots:true,
+    arrows: true,
+    autoplay: true,
+    centerMode: true,
+    centerPadding: "300px",
+    slidesToShow: 1,
+    infinite: true,
+    slidesToScroll: 1,
+    nextArrow: <NextArrow />,
+    prevArrow: <PrevArrow />,
+  };
+  const settings = {
+    arrows: true,
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    nextArrow: <NextArrow />,
+    prevArrow: <PrevArrow />,
+  };
+
+  return (
+    <>
+      <div className="lg:hidden">
+        <HeroSlider {...settings}>
+          {images.map((image) => (
+            <div className="w-full h-56 md:h-80 py-3">
+              <img
+                src={`https://image.tmdb.org/t/p/original${image.backdrop_path}`}
+                alt="testing"
+                className="w-full h-full"
+              />
+            </div>
+          ))}
+        </HeroSlider>
+      </div>
+
+      <div className="hidden lg:block">
+        <HeroSlider {...settingsLG}>
+          {images.map((image) => (
+            <div className="w-full h-72 px-1 py-2 m-3">
+              <img
+                src={`https://image.tmdb.org/t/p/original${image.backdrop_path}`}
+                alt="testing"
+                className="w-full h-full rounded-md"
+              />
+            </div>
+          ))}
+        </HeroSlider>
+      </div>
+    </>
+  );
 };
 
 export default HeroCarousal;
